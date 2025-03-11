@@ -14,9 +14,9 @@ const port = process.env.PORT || 5000;
 
 app.use(express.json());
 app.use(cors({
-  origin: "http://localhost:5173", // Allow frontend (adjust if needed)
-  methods: ["GET", "POST"], // Allow required methods
-  allowedHeaders: ["Content-Type"]
+  origin: "http://localhost:5173", // ✅ Adjust this if your frontend is hosted elsewhere
+  methods: "GET,POST,PUT,DELETE",
+  allowedHeaders: "Content-Type,Authorization"
 }));
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 // Start Scheduled SMS Job
