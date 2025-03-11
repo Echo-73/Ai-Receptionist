@@ -4,55 +4,6 @@ const { addEvent } = require("../controllers/eventController");
 const authMiddleware = require("../middleware/authMiddleware");
 const router = express.Router();
 
-// Get events for logged-in user
-// router.get("/", async (req, res) => {
-//     try {
-//       const userId = req.query.userId; // Assuming frontend sends userId
-//       const events = await Event.find({ userId });
-//       res.json(events);
-//     } catch (err) {
-//       res.status(500).json({ error: err.message });
-//     }
-//   });
-  
-//   // Create new event (with userId)
-//   router.post("/", async (req, res) => {
-//     try {
-//       const { userId, name, dateTime } = req.body;
-//       const newEvent = new Event({ userId, name, dateTime });
-//       await newEvent.save();
-//       res.json(newEvent);
-//     } catch (err) {
-//       res.status(500).json({ error: err.message });
-//     }
-//   });
-// router.post("/", authMiddleware, async (req, res) => {
-//   console.log("Token received:", req.header("Authorization"));
-
-//   try {
-//     const { name, dateTime } = req.body;
-//     if (!name || !dateTime) {
-//       return res.status(400).json({ error: "Please provide all details" });
-//     }
-
-//     const newEvent = new Event({
-//       userId: req.user.id,
-//       name,
-//       dateTime,
-//     });
-
-//     await newEvent.save();
-//     res.status(201).json({ message: "Event created successfully!", event: newEvent });
-//   } catch (error) {
-//     res.status(500).json({ error: "Server error" });
-//   }
-// });
-
-
-
-// // Protect route with authMiddleware
-// router.post("/", authMiddleware, addEvent);
-
 router.post("/", authMiddleware, async (req, res) => {
   console.log("📥 Received Event Creation Request");
   console.log("Headers:", req.headers);
